@@ -34,9 +34,15 @@ class RabbitMq():
         self._connection.close()
 
 if __name__ == "__main__":
-    server = RabbitmqConfigure(queue='hello', host='localhost', routingKey='hello', exchange='')
+    """ server = RabbitmqConfigure(queue='hello', host='localhost', routingKey='hello', exchange='')
+    rabbitmq = RabbitMq(server)
+    rabbitmq.publish(payload={"Data":"Hello World!"}) """
+
+    #Ensayo usando IP de Middleware en EC2
+    server = RabbitmqConfigure(queue='hello', host='54.211.164.46', routingKey='hello', exchange='')
     rabbitmq = RabbitMq(server)
     rabbitmq.publish(payload={"Data":"Hello World!"})
+
 
 
 

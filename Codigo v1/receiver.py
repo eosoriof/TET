@@ -1,27 +1,3 @@
-""" try:
-    import pika
-except Exception as e:
-    print("Some modules are missing {}".format(e))
-
-#Crear la conexion
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
-
-#Crear canal
-channel = connection.channel()
-
-#Crear cola
-channel.queue_declare(queue='hello')
-
-#Callback
-def callback(ch, method, properties, body):
-    print(' [x] Received %r' % body)
-
-#Consumir
-channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
-
-print(' [*] Waiting messages. To exit press CTRL+C')
-channel.start_consuming() """
-
 try:
     import pika
     import ast
@@ -84,6 +60,12 @@ class rabbitmqServer():
 
 
 if __name__ == "__main__":
-    serverconfigure = RabbitMqServerConfigure(host='localhost',queue='hello')
+    """ serverconfigure = RabbitMqServerConfigure(host='localhost',queue='hello')
     server = rabbitmqServer(server=serverconfigure)
     server.startserver()
+ """
+    #Ensayo con IP de Middleware en EC2
+    serverconfigure = RabbitMqServerConfigure(host='54.211.164.46',queue='hello')
+    server = rabbitmqServer(server=serverconfigure)
+    server.startserver()
+
