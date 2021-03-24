@@ -4,9 +4,11 @@ import jwt
 from database import *
 from auth import *
 from flask import Flask, request
+from flask_cors import CORS
 
 RABBIT_HOST = '54.211.164.46'
 app = Flask(__name__)
+CORS(app)
 connection = pika.BlockingConnection(pika.ConnectionParameters(RABBIT_HOST,
                                                                heartbeat=600,
                                                                blocked_connection_timeout=300))
