@@ -83,6 +83,8 @@ def login():
     else:
         token = generate_token(user)
         return token, 200
+        #print(token)
+        #return str(token)
 
 
 @app.route('/register', methods=['POST'])
