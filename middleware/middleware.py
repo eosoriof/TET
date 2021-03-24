@@ -1,6 +1,4 @@
 import pika
-import json
-import jwt
 from database import *
 from auth import *
 from flask import Flask, request
