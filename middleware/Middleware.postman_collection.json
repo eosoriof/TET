@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ff27eeae-a354-4a44-9799-1e69a0f0636b",
+		"_postman_id": "329f586f-819a-41cc-a042-590f35a86b7f",
 		"name": "Middleware",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -142,6 +142,63 @@
 					"port": "5000",
 					"path": [
 						"delete_queue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Queues",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/list_queues",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"list_queues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consume messages",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"queue_name\": \"queue3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/consume",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"consume"
 					]
 				}
 			},
