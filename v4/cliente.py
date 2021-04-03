@@ -2,6 +2,7 @@ import middleware
 
 registrado = False
 acceso = False
+userName = ''
 
         
 
@@ -48,8 +49,6 @@ def mandarMensaje(colaSeleccionada):
         tarea = input()
         if (tarea!='salir'):
             middleware.recibirMensaje(colaSeleccionada, tarea)
-
-
     
 
 def enviarTareas():
@@ -57,12 +56,13 @@ def enviarTareas():
     print("Seleccione una opción:")
     print("1. Crear cola")
     print("2. Enviar tarea a una cola")
+    print("3. Eliminar cola")
     opcion = input()
 
     if (opcion == '1'):
         print("Ingrese el nombre de la cola: ")
         nombre = input()
-        cola = middleware.crearCola(nombre)
+        cola = middleware.crearCola(nombre, userName)
         enviarTareas()
     elif (opcion == '2'):
         if (middleware.colas.__len__() > 0):
@@ -80,6 +80,8 @@ def enviarTareas():
         else:
             print("Primero debe crear una cola")
             enviarTareas()
+    elif (opcion=='3'):
+        middleware.eliminarCola(userName)
     else:
         enviarTareas()
     
@@ -87,6 +89,7 @@ def enviarTareas():
 
 
 def main():
+    global userName
     print("Seleccione una opción:")
     print("1. Registro")
     print("2. Iniciar sesión")
@@ -101,6 +104,7 @@ def main():
     elif (opcion == '2'):
         print("-------------Iniciar sesión---------------")
         email = input("Ingrese su email: ")
+        userName = email
         password = input("Ingrese su contraseña: ")
         iniciarSesion(email, password)
     elif (opcion == '3'):
