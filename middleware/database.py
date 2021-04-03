@@ -1,4 +1,5 @@
 import pymongo
+import json
 
 connection_string = """
 mongodb+srv://middleware:ksShpi9xS4XFGBaN@middlewaredb.zwxw2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
@@ -23,6 +24,8 @@ def register_queue(queue_name, owner_name):
 def get_queues():
     queues = queue_table.find()
     queue_list = [q for q in queues]
+    for q in queue_list:
+        del q['_id']
     return queue_list
 
 
