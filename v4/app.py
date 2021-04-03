@@ -1,17 +1,8 @@
+import middleware
+
 registrado = False
 acceso = False
-colas = []
-class Cola:
-    def __init__(self, nombre):
-        self.nombre = nombre
-        self.mensajes = []
-    
-    def pushMensaje(self, mensaje):
-        self.mensajes.append(mensaje)
-    
-    def getMensajes(self):
-        for mensaje in self.mensajes:
-            print(mensaje)
+
         
 
 def comprobarRegistro():
@@ -48,11 +39,18 @@ def iniciarSesion(email, password):
         print("Email o contraseña incorrectos o el usuario no está registrado")
         main()
 
+def mandarMensaje(colaSeleccionada):
+    print("Escriba su tarea a ser procesada")
+    tarea = input()
+    middleware.recibirMensaje(colaSeleccionada, tarea)
+    while(tarea !='salir'):
+        print("Escriba su tarea a ser procesada o escriba salir para terminar proceso")
+        tarea = input()
+        if (tarea!='salir'):
+            middleware.recibirMensaje(colaSeleccionada, tarea)
 
-def listarColas():
-    i = 0
-    for c in colas:
-        print(str(i) +" "+ c.nombre)
+
+    
 
 def enviarTareas():
     print("Hola de nuevo")
@@ -64,22 +62,21 @@ def enviarTareas():
     if (opcion == '1'):
         print("Ingrese el nombre de la cola: ")
         nombre = input()
-        cola = Cola(nombre)
-        colas.append(cola)
+        cola = middleware.crearCola(nombre)
         enviarTareas()
     elif (opcion == '2'):
-        if (colas.__len__() > 0):
-            listarColas()
+        if (middleware.colas.__len__() > 0):
+            middleware.listarColas()
             print("Seleccione una cola: (ejm: 1)")
             colaSeleccionada = input()
-            while(int(colaSeleccionada) > colas.__len__()):
+            print("Cola seleccionada: " + colaSeleccionada)
+            while(int(colaSeleccionada) > middleware.colas.__len__()):
                 print("Esa cola no ha sido creada, por favor seleccione otra opcion")
-                listarColas()
+                middleware.listarColas()
                 print("Seleccione una cola: (ejm: 1)")
                 colaSeleccionada = input()
-            #Esto se debe hacer en el middleware
-
-            
+                print("Cola seleccionada: " + colaSeleccionada)
+            mandarMensaje(int(colaSeleccionada))
         else:
             print("Primero debe crear una cola")
             enviarTareas()
