@@ -1,2 +1,0 @@
-hola,123
-nuevo,pass
