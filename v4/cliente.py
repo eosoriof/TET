@@ -40,15 +40,22 @@ def iniciarSesion(email, password):
         print("Email o contraseña incorrectos o el usuario no está registrado")
         main()
 
+
 def mandarMensaje(colaSeleccionada):
-    print("Escriba su tarea a ser procesada")
-    tarea = input()
-    middleware.recibirMensaje(colaSeleccionada, tarea)
-    while(tarea !='salir'):
-        print("Escriba su tarea a ser procesada o escriba salir para terminar proceso")
+    print("Para mandar tarea escriba 1, para volver al menu anterior 2, para salir 3")
+    opcion = input()
+    if (opcion == '1'):
+        print("Escriba su tarea a ser procesada")
         tarea = input()
-        if (tarea!='salir'):
-            middleware.recibirMensaje(colaSeleccionada, tarea)
+        middleware.recibirMensaje(colaSeleccionada, tarea)
+        mandarMensaje(colaSeleccionada)
+    elif (opcion == '2'):
+        enviarTareas()
+    elif (opcion == '3'):
+        exit()
+    else:
+        mandarMensaje(colaSeleccionada)
+    
     
 
 def enviarTareas():
